@@ -4,14 +4,14 @@ const token = process.env.token;
 const bot = new TelegramBot(token, { polling: true });
 
 let courseInfo = "Bu yerda kurs haqida ma'lumot bo'ladi.";
-const adminId = '1679325441'; // Replace with the actual admin's user ID
-const adminUsername = 'ilminur01'; // Replace with the actual admin's username without '@'
+const adminId = '1679325441'; // Haqiqiy admin foydalanuvchi ID si bilan almashtiring
+const adminUsername = 'ilminur01'; // @ belgisisiz haqiqiy admin foydalanuvchi nomi bilan almashtiring
 
-// Keyboard options
+// Klaviatura variantlari
 const mainKeyboard = {
     keyboard: [
         [{ text: 'Kursga yozilish' }],
-        [{ text: 'Qayta ishga tushirish' }]
+        [{ text: "Ma'lumot olish" }]
     ],
     resize_keyboard: true
 };
@@ -23,7 +23,7 @@ const educationTypeKeyboard = {
     resize_keyboard: true
 };
 
-bot.onText(/\/start|Qayta ishga tushirish/, (msg) => {
+bot.onText(/\/start|Ma'lumot olish/, (msg) => {
     const chatId = msg.chat.id;
     bot.sendMessage(chatId, `${courseInfo}`, {
         reply_markup: mainKeyboard
@@ -114,17 +114,17 @@ Kiritilgan ma'lumotlar:
             bot.sendMessage(chatId, "Rahmat! Sizning ma'lumotlaringiz adminga yuborildi. Admin tez orada siz bilan aloqaga chiqadi.", {
                 reply_markup: {
                     inline_keyboard: [[
-                        { text: "Admin bilan bog'lanish", url: `@${adminUsername}` }
+                        { text: "Admin bilan bog'lanish", url: `https://t.me/${adminUsername}` }
                     ]]
                 }
             });
 
             // Asosiy menyuga qaytish
             setTimeout(() => {
-                bot.sendMessage(chatId, "Asosiy menyuga qaytish uchun 'Qayta ishga tushirish' tugmasini bosing.", {
+                bot.sendMessage(chatId, "Kurs haqida to'liq ma'lumot olish uchun  'Ma'lumot olish' tugmasini bosing.", {
                     reply_markup: mainKeyboard
                 });
-            }, 2000);
+            }, 1000);
         } else if (adminAction.startsWith('chatting') && chatId.toString() === adminAction.replace('chatting', '')) {
             bot.sendMessage(adminId, "Foydalanuvchi: " + text);
         }
