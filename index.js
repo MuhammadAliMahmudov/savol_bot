@@ -5,7 +5,7 @@ const bot = new TelegramBot(token, { polling: true });
 
 let courseInfo = "Bu yerda kurs haqida ma'lumot bo'ladi.";
 const adminId = '1679325441'; // Replace with the actual admin's user ID
-const adminUsername = '@ilminur01'; // Replace with the actual admin's username without '@'
+const adminUsername = 'ilminur01'; // Replace with the actual admin's username without '@'
 
 // Keyboard options
 const mainKeyboard = {
